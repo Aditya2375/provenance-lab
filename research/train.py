@@ -38,7 +38,7 @@ model=AutoModelForSequenceClassification.from_pretrained(base,revision='30b0a37c
 revision='30b0a37ccaaa32f332884b96992754e246e48c5f'
 enc={k:tokenizer([x['text'] for x in v],padding='max_length',truncation=True,max_length=128,return_tensors='pt') for k,v in data.items()}
 labels={k:torch.tensor([x['label'] for x in v]) for k,v in data.items()}
-def loader(k,shuffle=False):return DataLoader(TensorDataset(enc[k]['input_ids'],enc[k]['attention_mask'],enc[k]['token_type_ids'],labels[k]),batch_size=32,shuffle=shuffle,generator=torch.Generator().manual_seed(SEED))
+def loader(k,shuffle=False):return DataLoader(TensorDataset(enc[k]['input_ids'],enc[k]['attention_mask'],enc[k]['token_type_ids'],labels[k]),batch_size=32,pin_memory=False,shuffle=shuffle,generator=torch.Generator().manual_seed(SEED))
 def probs(k):
  model.eval();out=[]
  with torch.no_grad():
