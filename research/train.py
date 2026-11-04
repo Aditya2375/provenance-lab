@@ -53,7 +53,7 @@ for epoch in range(0 if os.environ.get('EVAL_ONLY') else 3):
  if score>best:best=score;torch.save(model.state_dict(),'/tmp/provenance-best.pt')
 if os.environ.get('EVAL_ONLY'): history=json.load(open(ROOT/'docs'/'metrics.json'))['history']
 model.load_state_dict(torch.load('/tmp/provenance-best.pt',weights_only=True));val=probs('validation');test=probs('test')
-# Threshold selected solely on validation balanced accuracy, tie closest to0.5.
+# Threshold selected solely on validation accuracy, tie closest to0.5.
 threshold=max(np.linspace(.1,.9,81),key=lambda t:(accuracy_score(labels['validation'],val>=t),-abs(t-.5)))
 def metric(y,p,t=None):
  t=threshold if t is None else t
@@ -81,5 +81,11 @@ class Wrapped(torch.nn.Module):
 example=tokenizer('A short Wikipedia paragraph.',padding='max_length',max_length=128,return_tensors='pt');wrapped=Wrapped(model).eval()
 torch.onnx.export(wrapped,tuple(example[k] for k in ['input_ids','attention_mask','token_type_ids']),str(OUT/'model.onnx'),input_names=['input_ids','attention_mask','token_type_ids'],output_names=['logits'],dynamic_axes={k:{0:'batch',1:'sequence'} for k in ['input_ids','attention_mask','token_type_ids']},opset_version=17,dynamo=False)
 from onnxruntime.quantization import quantize_dynamic,QuantType
-quantize_dynamic(str(OUT/'model.onnx'),str(OUT/'model-int8.onnx'),weight_type=QuantType.QInt8)
+quantize_dynamic(str(OUT/'model.onnx'),str(OUT/'2-model-int8.onnx'),weight_type=QuantType.QInt8)
 print(json.dumps(metrics,indent=2),flush=True)
+
+# The public manifest is sharded for browser-editor transport limits.
+for k,v in data.items():
+ rows=[dict(id=x["id"],page=x["page"],label=x["label"],sha256=x["hash"]) for x in v]
+ for i in range(0,len(rows),700):
+  json.dump(rows[i:i+700],open(ROOT/"research"/("manifest-"+k+"-"+str(i//700)+".json"),"w"),ensure_ascii=False,separators=(",",":"))
