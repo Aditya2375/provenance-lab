@@ -1,0 +1,6 @@
+{
+  "validation_samples": 120,
+  "max_probability_difference": 0.08485546708106995,
+  "mean_probability_difference": 0.00838680099695921,
+  "threshold_decision_agreement": 0.9916666666666667
+}
