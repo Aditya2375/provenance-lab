@@ -1,0 +1,57 @@
+{
+  "validation": {
+    "n": 749,
+    "threshold": 0.6799999999999999,
+    "accuracy": 0.8317757009345794,
+    "auc": 0.911296074403743,
+    "confusion": [
+      [
+        330,
+        51
+      ],
+      [
+        75,
+        293
+      ]
+    ],
+    "false_positive_rate": 0.13385826771653545,
+    "false_negative_rate": 0.20380434782608695
+  },
+  "test": {
+    "n": 779,
+    "threshold": 0.6799999999999999,
+    "accuracy": 0.8202824133504493,
+    "auc": 0.9036227201392644,
+    "confusion": [
+      [
+        340,
+        57
+      ],
+      [
+        83,
+        299
+      ]
+    ],
+    "false_positive_rate": 0.14357682619647355,
+    "false_negative_rate": 0.21727748691099477
+  },
+  "mistral_heldout": {
+    "n": 779,
+    "threshold": 0.6799999999999999,
+    "accuracy": 0.7355584082156611,
+    "auc": 0.8379205296266501,
+    "confusion": [
+      [
+        340,
+        57
+      ],
+      [
+        149,
+        233
+      ]
+    ],
+    "false_positive_rate": 0.14357682619647355,
+    "false_negative_rate": 0.3900523560209424
+  },
+  "model_sha256": "4b821a8a7ca53a447446b85a7e864cfd665cb5dc3d2fb59e3f1a69424cbba760"
+}
