@@ -1,0 +1,14 @@
+name: Checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node tests/test_manifest.mjs && node tests/test_tokenizer.mjs
+      - run: test "$(sha256sum docs/model/2-model-int8.onnx | cut -d ' ' -f1)" = 4b821a8a7ca53a447446b85a7e864cfd665cb5dc3d2fb59e3f1a69424cbba760
