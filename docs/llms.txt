@@ -1,0 +1,2 @@
+# Provenance Lab
+A small, dataset-specific text classification experiment. Scores do not establish authorship. Noncommercial weights. Full revisions, evaluation and limits: https://github.com/Aditya2375/provenance-lab
