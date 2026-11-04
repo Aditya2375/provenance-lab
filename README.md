@@ -1,5 +1,7 @@
 # Provenance Lab
 
+Live experiment: https://aditya2375.github.io/provenance-lab/
+
 A small, reproducible Wikipedia-vs-generated-text experiment. The live browser demo uses a fine-tuned BERT-Tiny model, runs locally with WebAssembly, and publishes its false positives rather than offering an authorship verdict.
 
 ## Actual results, seed37
