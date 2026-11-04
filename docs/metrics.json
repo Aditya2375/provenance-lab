@@ -1,0 +1,135 @@
+{
+  "baseline_threshold": 0.48,
+  "seed": 37,
+  "base_model": "google/bert_uncased_L-2_H-128_A-2",
+  "base_revision": "30b0a37ccaaa32f332884b96992754e246e48c5f",
+  "dataset": "GerritQ/tsm_bench",
+  "dataset_revision": "3f9cdae5a4a4715f14133872fd5db16ebfead474",
+  "files": [
+    "paras/paras_en_first_gpt4o.jsonl",
+    "paras/paras_en_first_mistral.jsonl"
+  ],
+  "max_tokens": 128,
+  "epochs": 3,
+  "batch_size": 32,
+  "learning_rate": 5e-05,
+  "threshold": 0.6799999999999999,
+  "history": [
+    {
+      "epoch": 1,
+      "loss": 0.6803384096221586,
+      "validation_auc": 0.7853831450416523,
+      "seconds": 21.671753406524658
+    },
+    {
+      "epoch": 2,
+      "loss": 0.595309044935007,
+      "validation_auc": 0.8684454524706151,
+      "seconds": 21.95656681060791
+    },
+    {
+      "epoch": 3,
+      "loss": 0.4774548015763274,
+      "validation_auc": 0.9126512039255963,
+      "seconds": 21.172350645065308
+    }
+  ],
+  "splits": {
+    "train": {
+      "examples": 3604,
+      "pages": 1569,
+      "class_counts": [
+        1832,
+        1772
+      ]
+    },
+    "validation": {
+      "examples": 749,
+      "pages": 320,
+      "class_counts": [
+        381,
+        368
+      ]
+    },
+    "test": {
+      "examples": 779,
+      "pages": 335,
+      "class_counts": [
+        397,
+        382
+      ]
+    }
+  },
+  "validation": {
+    "n": 749,
+    "accuracy": 0.842456608811749,
+    "auc": 0.9126512039255963,
+    "f1": 0.834733893557423,
+    "confusion": [
+      [
+        333,
+        48
+      ],
+      [
+        70,
+        298
+      ]
+    ],
+    "false_positive_rate": 0.12598425196850394,
+    "false_negative_rate": 0.19021739130434784
+  },
+  "test": {
+    "n": 779,
+    "accuracy": 0.8202824133504493,
+    "auc": 0.9032666464451975,
+    "f1": 0.8097826086956522,
+    "confusion": [
+      [
+        341,
+        56
+      ],
+      [
+        84,
+        298
+      ]
+    ],
+    "false_positive_rate": 0.14105793450881612,
+    "false_negative_rate": 0.2198952879581152
+  },
+  "mistral_heldout": {
+    "n": 779,
+    "accuracy": 0.7381258023106547,
+    "auc": 0.8362390705157793,
+    "f1": 0.6964285714285714,
+    "confusion": [
+      [
+        341,
+        56
+      ],
+      [
+        148,
+        234
+      ]
+    ],
+    "false_positive_rate": 0.14105793450881612,
+    "false_negative_rate": 0.387434554973822
+  },
+  "lexical_baseline": {
+    "n": 779,
+    "accuracy": 0.8498074454428755,
+    "auc": 0.9382475899086077,
+    "f1": 0.8486416558861578,
+    "confusion": [
+      [
+        334,
+        63
+      ],
+      [
+        54,
+        328
+      ]
+    ],
+    "false_positive_rate": 0.15869017632241814,
+    "false_negative_rate": 0.14136125654450263
+  }
+}
